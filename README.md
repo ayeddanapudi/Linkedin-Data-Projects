@@ -7,6 +7,10 @@ This repo contains the associated code and selected data products for use with t
 
 -  **_india_linkedin_pyspark_ym_** : utilizes pyspark to filter the data to only those individuals employed India. Matches individual work experience by user_id to generate work history for each individual for every year in which they were part of the labor market and aggregates the result by year-month pair, state of employment (in India) and the 2-digit onet code. 
     - _outputs_: aggregated .parquet files by year-month pair, state of employment (in India) and the 2-digit onet code
-    - _note_: to alter this code to apply to labor in any country in the dataset, change line 50 to state "india_df = india_df.filter(col('country') == <name_of_country>)" where <name_of_country> is the desired country for the analysis
+    - _note_: to alter this code to apply to labor in any country in the dataset, change line 50 to state
+      ```
+      india_df = india_df.filter(col('country') == <name_of_country>)
+      ```
+      where <name_of_country> is the desired country for the analysis
 
 -   

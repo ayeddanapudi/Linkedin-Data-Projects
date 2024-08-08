@@ -24,7 +24,7 @@ where _<environment_name>_ is the name of your python environment.
 - **_india_linkedin_pyspark.py_** : Does the same as **_india_linkedin_pyspark.py_** however aggregates the data by year, state of employment (in India) and the 6-digit onet code.
     - _outputs_: .csv file of average salary and the number of individuals by year-month pair, state of employment (in India) and the 2-digit onet code
     - _note_: to alter this code to apply to labor in any country, change line 47 to state
-    ```
+      ```
       india_df = india_df.filter(col('country') == <name_of_country>)
       ```
       where _<name_of_country>_ is the desired country for the analysis

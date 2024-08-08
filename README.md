@@ -96,4 +96,7 @@ where _<environment_name>_ is the name of your python environment.
         where _<name_of_destination_country>_ is the desired destination country of the migrants.
 
 -   **_merge_city_mapper.py_** : merges all csv files in the city mapper dataset to be a singular parquet file for use with the AKM model.
-    - _outputs_: .parquet file of merged city mapper csv files 
+    - _outputs_: .parquet file of merged city mapper csv files
+
+- **_collapse_education_data.py_** : converts Revellio Linkedin Education Data into a wide format (by user_id) for use as controls for individual education, universities, year of education etc.
+      - _outputs_: .parquet file with 1 row per user_id detailing each level of education that an individual has attained in the dataset (grouped by High School, Associates Degrees, Bachelors Degrees and Post Graduate Degrees)

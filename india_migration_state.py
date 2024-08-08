@@ -45,22 +45,28 @@ def main():
     print("Spark session setup complete", flush=True)
 
     print("Reading in Parquet Files", flush=True)
+    # Read Parquet files
     try:
         india_df = spark.read.parquet(*parquet_files)
+        print("Line 1 done", flush=True)
         india_user_df = india_df.filter(col('country') == 'India')
+        print("Line 2 done", flush=True)
         us_user_df = india_df.filter(col('country') == 'United States')
-        india_users = [row.user_id for row in india_user_df.select('user_id').collect()]
-        us_users = [row.user_id for row in us_user_df.select('user_id').collect()]
-        
-        india_migrant_users = list(set(india_users) & set(us_users))
+        print("Line 3 done", flush=True)
+        migrant_users_df = india_user_df.join(us_user_df, on='user_id', how='inner')
+        print("Line 4 done", flush=True)
+        india_migrant_users = migrant_users_df.select('user_id').rdd.flatMap(lambda row: row).collect()
+        print("Line 5 done", flush=True)
         
         del india_user_df, us_user_df
-        
+        print("Line 6 done", flush=True)
+                
         india_df = india_df.filter(col('user_id').isin(india_migrant_users))
+        print("Line 7 done", flush=True)
     except Exception as e:
         print(f"Error reading Parquet files: {e}", flush=True)
         sys.exit(1)
-
+    
     print("Finished reading Parquet Files", flush=True)
 
     print("Starting data processing...", flush=True)
@@ -146,7 +152,6 @@ def main():
 
     print(f"Result saved to: {result_file_path}", flush=True)
     spark.stop()
-
 #%%
 if __name__ == "__main__":
     main()

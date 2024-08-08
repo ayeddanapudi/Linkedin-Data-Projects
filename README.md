@@ -34,6 +34,14 @@ This repo contains the associated code and selected data products for use with t
         ```
         india_df = india_df.filter(col('country') == <name_of_destination_country>)
         ```
-        where _<name_of_destination_country>_ is the desired destination country of the migrants
+        where _<name_of_destination_country>_ is the desired destination country of the migrants. Note also that line 34 is essential to ensure that pyspark will read the education dates as is without generating an ancient date error
 
+-   **_india_migration_educ_pre1990.py_**: Does the same as **_india_migration_educ.py_** with the only difference being that it aggregates the data for those individuals who completed their college education prior to Jan. 1st 1990.
+    - _outputs_: aggregated .csv files of average salary and the number of individuals by 6-digit onet code, location of university and year. Note that university location is not in terms of state or country but rather scraped strings from the data (pre-1990 educated labor only)
+    - _notes_: to change the time cutoff for labor considered, alter line 90 to state
+      ```
+      india_educ_df = india_educ_df.filter(col('college_enddate') < <desired_date>)
+      ```
+      where _<desired_date>_ takes the form a "YYYY-MM-DD" string (i.e. "1970-12-09", "1971-10-24, "2000-10-04", etc.). Note also that line 34 is essential to ensure that pyspark will read the education dates as is without generating an ancient date error  
+      
 -   

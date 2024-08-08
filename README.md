@@ -8,6 +8,9 @@ pip install -r requirements.txt
 ```
 where _<environment_name>_ is the name of your python environment. 
 
+
+See the _Bash Scripts_ folder for a template bash (.sh) script that can be used with the attached .py files in this repository. Comments on the template detail the user specifics that need to be adjusted for personal use. 
+
 ## Code written to use Dask
 - **_akm_merge_script.py_** : compiles each of the .parquet position files into single dataframe that can then be used for the AKM model (this particular script works well on a local machine however stalls when run on the SSRDE SLURM cluster so is recommended to be used for local computations on samples of the data only).
     - _outputs_: locally stored composite dataframe - can be saved by adding the command _dd.to_csv(/path/to/folder/)_ or alternatives for .parquet, .xlsx, etc. file types

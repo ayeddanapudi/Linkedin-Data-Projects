@@ -89,5 +89,3 @@ where _<environment_name>_ is the name of your python environment.
 
 -   **_merge_city_mapper.py_** : merges all csv files in the city mapper dataset to be a singular parquet file for use with the AKM model.
     - _outputs_: .parquet file of merged city mapper csv files 
-    
--   

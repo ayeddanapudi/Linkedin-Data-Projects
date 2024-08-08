@@ -20,7 +20,15 @@ where _<environment_name>_ is the name of your python environment.
       india_df = india_df.filter(col('country') == <name_of_country>)
       ```
       where _<name_of_country>_ is the desired country for the analysis
-
+      
+- **_india_linkedin_pyspark.py_** : Does the same as **_india_linkedin_pyspark.py_** however aggregates the data by year, state of employment (in India) and the 6-digit onet code.
+    - _outputs_: .csv file of average salary and the number of individuals by year-month pair, state of employment (in India) and the 2-digit onet code
+    - _note_: to alter this code to apply to labor in any country, change line 47 to state
+    ```
+      india_df = india_df.filter(col('country') == <name_of_country>)
+      ```
+      where _<name_of_country>_ is the desired country for the analysis
+      
 -   **_india_migration_educ.py_** : Considers only migrants to the US, from India, by user_id. Migrants are identified, by user_id, as any individual who appears in the Linkedin dataset in both India and later the US. The working dataset for this code uses identified user_id's of migrants to construct an India-US migrant dataset. Similar to the **_india_linkedin_pyspark_ym.py_** script, individual work experience, for Indian migrants within the US, is matched by user_id to generate work history for each individual in every year in which they were pat of the labor market using Linkedin job position data. This is merged with Linkedin education data to estimate when individuals entered the labor market. Code aggregates the epanded migrant dataset by 6-digit onet code, location of the university and year
       - _outputs_ : aggregated .csv files of average salary and the number of individuals by 6-digit onet code, location of university and year. Note that university location is not in terms of state or country but rather scraped strings from the data
       - _note_: to alter this code to apply to migrant labor from any country in the dataset to the US, change line 63 to state
